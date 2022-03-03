@@ -1,33 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import Search from './Search';
 
-function Nav() {
+function Nav({setSearch, addToCart}) {
+  const [show, setshow] = useState(false);
   return (
     <div>
         <div className="nav">
             <div className="left-nav">
-                <h1>Bloom</h1>
+                <Link to="/">
+                  <h1>Bloom</h1>
+                </Link>
                 <ul>
-                    <li>
-                        Home
-                    </li>
-                    <li>
-                        About us
-                    </li>
-                    <li>
-                        Products
-                    </li>
-                    <li>
-                        Contact Us
-                    </li>
+                <Link to="/">
+                  <li> Home </li>
+                </Link>
+                <Link to="/products">
+                  <li> Products </li>
+                </Link>
+                <Link to="/about">
+                  <li> About us </li>
+                </Link>
                 </ul>
             </div>
             <div className="right-nav">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-magnifying-glass" onClick={() => setshow(!show)}></i>
+            {show ? <Search setshow={setshow} show={show} setSearch={setSearch} /> : null}
             <i class="fa-solid fa-cart-shopping"></i>
             <i class="fa-solid fa-user"></i>
             </div>
         </div>
-    
     </div>
   )
 }
